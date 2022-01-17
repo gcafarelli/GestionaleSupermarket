@@ -1,0 +1,17 @@
+﻿@model ProgettoFinale_GuidoCafarelli.Users
+
+
+<h2 class="text-center my-3" style=" color: #e00025; font-weight: 300; text-shadow: 1px 1px #1f3372">Login</h2>
+
+<div class="form-horizontal col-6 text-center p-5 my-4" style="margin: 0 auto; justify-content: center; border: 5px solid #1f3372; border-radius: 25px; background-color: #ffd101; color: #1f3372 ">
+    @ViewBag.ErroreLogin
+
+    @using (Html.BeginForm())
+    {
+
+        @Html.TextBoxFor(m => m.User, new { @class = "form-control my-5 text-center", @placeholder = "username" })
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control my-5 text-center", @placeholder = "password" })
+        <input type="submit" value="Accedi" class="btn  text-white p-1" style="text-decoration: none; background-color: #e00025; margin:0 auto; width:300px" />
+
+    }
+</div>

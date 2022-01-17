@@ -1,0 +1,87 @@
+﻿
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnRicerca2').click(function () {
+                $('#RisultatiRicerca2 tr').remove();
+                $.ajax({
+                    url: '/Prodotti/GiacenzaCat',
+                    type: 'POST',
+                    success: function (ricerca2) {
+                        $.each(ricerca2, function (indice2) {
+                            $('#RisultatiRicerca2').append(
+                                '<tr>' +
+                                '<td>' + ricerca2[indice2].NomeProdotto + '</td>' +
+                                '<td>' + ricerca2[indice2].Quantita + '</td>' +
+                                '</tr> '
+                            )
+                        })
+                    }
+                });
+
+
+            });
+
+            $('#btnRicerca').click(function () {
+                $('#RisultatiRicerca tr').remove();
+                $.ajax({
+                    url: '/Prodotti/GiacenzeNum',
+                    type: 'POST',
+                    success: function (ricerca) {
+                        $.each(ricerca, function (indice) {
+                            $('#RisultatiRicerca').append(
+                                '<tr>' +
+                                '<td>' + ricerca[indice].NomeProdotto + '</td>' +
+                                '<td>' + ricerca[indice].Quantita + '</td>' +
+                                '</tr> '
+                            )
+                        })
+                    }
+                });
+
+
+            });
+
+            
+
+        })
+    </script>
+
+}
+<h2 class="text-center my-3" style=" color: #e00025; font-weight: 300; text-shadow: 1px 1px #1f3372">Riepilogo Giacenze</h2>
+<div class="form-horizontal col-6 text-center" style="margin:0 auto;justify-content:center">
+    <div class="form-group m-4">
+        <p>Giacenze < Stock Min(500pz)</p>
+        <button id="btnRicerca" type="submit" class="btn text-white p-2 col-5" style="text-decoration: none; margin-top: 20px; margin-bottom: 20px; width: 200px; background-color: #EA5455 ">Cerca</button>
+     </div>
+</div>
+<div class="col-12">
+    <table class="table table-striped table-hover" style="background-color: #E6E6E6; color: #2D4263;border-radius:15px">
+        <thead>
+            <tr>
+                <th>Nome Prodotto</th>
+                <th>Quantita in Giacenza</th>
+            </tr>
+        </thead>
+        <tbody id="RisultatiRicerca">
+        </tbody>
+    </table>
+</div>
+<div class="form-horizontal col-6 text-center" style="margin:0 auto;justify-content:center">
+    <div class="form-group m-4">
+        <p>Giacenze Per Categorie</p>
+        <button id="btnRicerca2" type="submit" class="btn text-white p-2 col-5" style="text-decoration: none; margin-top: 20px; margin-bottom: 20px; width: 200px; background-color: #EA5455 ">Cerca</button>
+    </div>
+</div>
+<div class="col-12">
+    <table class="table table-striped table-hover" style="background-color: #E6E6E6; color: #2D4263;border-radius:15px">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Quantita in Giacenza</th>
+            </tr>
+        </thead>
+        <tbody id="RisultatiRicerca2">
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnRicerca').click(function () {
+                $('#RisultatiRicerca tr').remove();
+                $.ajax({
+                    url: '/Prodotti/GiacenzeNum',
+                    type: 'POST',
+                    success: function (ricerca) {
+                        $.each(ricerca, function (indice) {
+                            $('#RisultatiRicerca').append(
+                                '<tr>'+
+                                '<td>' + ricerca[indice].NomeProdotto + '</td>' +
+                                '<td>' + ricerca[indice].Quantita + '</td>' +
+                                '</tr> '
+                            )
+                        })
+                    }
+                });
+
+            })
+        })
+    </script>
+
+}
+<h2 class="my-4">Giacenze</h2>
+<hr />
+<div class="form-horizontal col-6 text-center" style="margin:0 auto;justify-content:center">
+    <div class="form-group m-4">
+        <p>Numero Giacenze Max</p>
+<div class="col-12">
+    <table class="table table-striped table-hover" style="background-color: #E6E6E6; color: #2D4263;border-radius:15px">
+        <thead>
+            <tr>
+                <th>Nome Dipendente</th>
+                <th>Cognome Dipendente</th>
+            </tr>
+        </thead>
+        <tbody id="RisultatiRicerca">
+        </tbody>
+    </table>
+</div>

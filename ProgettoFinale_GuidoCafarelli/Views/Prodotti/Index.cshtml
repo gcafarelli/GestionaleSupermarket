@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProgettoFinale_GuidoCafarelli.Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid text-center mt-2" style=" color: #e00025;font-weight:bold">
+    <h2 style=" text-shadow: 1px 1px #1f3372 ">Catalogo Prodotti</h2>
+</div>
+<div class="container-fluid text-center justify content center mt-2" style=" color: #e00025;font-weight:800">
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("cerca", null, htmlAttributes: new { @placeholder = "Cerca Nome Prodotto/Categoria", @class = "control-label col-md-2 my-3", @style = "height:40px;width:300px" })
+        <input type="submit" value="Cerca" class="btn  text-white p-1" style="text-decoration: none; background-color: #e00025; " />
+    }
+    @Html.ActionLink("Aggiungi Nuovo Prodotto", "AggiungiNuovoProdotto", "", new { @class = "btn text-white my-4", @style = "text-decoration:none; margin:20px; background-color:#e00025" })
+</div>
+    <div class="container-fluid">
+        <div class="row text-center">
+            @foreach (var item in Model)
+            {
+                 <div class="col-3">
+                     <div class="p-4" style="margin: 10px; border: 5px solid #1f3372; border-radius: 25px; background-color: #ffd101; color: #1f3372 ">
+                         <img src="~/imgProdotti/@item.filename" style="width:180px; height:200px;" />
+                         <h2 style="height:100px"><b>@item.Nome</b></h2>
+                         <p>Categoria: <b>@item.Categorie.NomeCategoria</b></p>
+                         <p>Prezzo: <b>@Html.FormatValue(item.Prezzo, "{0:C}")</b></p>
+                         <p>Pezzi Disponibili: <b>@item.Stock</b></p>
+                         <p>@Html.ActionLink("Ordina a Magazzino", "OrdinaMagazzino", new { id = item.idProdotto }, new { @class = "btn text-white my-1", @style = "text-decoration:none; background-color:#e00025; width:300px;" })</p>
+                         <p> @Html.ActionLink("Ordina a Negozio", "OrdinaNegozio", new { id = item.idProdotto }, new { @class = "btn text-white my-1", @style = "text-decoration:none; background-color:#e00025; width:300px; " })</p>
+                     </div>
+                    
+                 </div>
+             
+            }
+        </div>
+    </div>
+

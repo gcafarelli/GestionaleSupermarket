@@ -1,0 +1,14 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@700&display=swap');
+
+
+.labelNew {
+    font-size: 20px !important;
+    color: #1f3372 !important;
+    font-weight: bold !important;
+    text-shadow: 2px 2px 2px #FFFFFF;
+}
+hr {
+    font-size: 3px;
+    color: #1f3372;
+}

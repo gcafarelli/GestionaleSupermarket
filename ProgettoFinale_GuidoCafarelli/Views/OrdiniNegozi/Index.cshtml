@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProgettoFinale_GuidoCafarelli.OrdiniNegozi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center my-3" style=" color: #e00025; font-weight: 300; text-shadow: 1px 1px #1f3372">Riepilogo Ordini Negozi</h2>
+<div class="container-fluid text-center justify content center my-2" style=" color: #e00025;font-weight:800">
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("cerca", null, htmlAttributes: new { @placeholder = "Cerca Nome Prodotto/Negozio", @class = "control-label col-md-2 my-3", @style = "height:40px;width:300px" })
+        <input type="submit" value="Cerca" class="btn  text-white p-1" style="text-decoration: none; background-color: #e00025; " />
+    }
+</div>
+
+<table class="table table-hover">
+    <tr style="color: #1f3372; background-color: #ffd101 ">
+        <th>
+            @Html.DisplayNameFor(model => model.Users.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prodotti.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantita)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.User)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prodotti.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantita)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,56 @@
+﻿@model ProgettoFinale_GuidoCafarelli.OrdiniNegozi
+
+@{
+    ViewBag.Title = "OrdinaNegozio";
+}
+
+<h2 class="text-center my-3" style=" color: #e00025; font-weight: 300; text-shadow: 1px 1px #1f3372">Nuovo Ordine Negozio</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idProdotto, new { Value = ViewBag.Id })
+
+<div class="form-horizontal col-8 text-center p-5" style="margin: 0 auto; justify-content: center; border: 5px solid #1f3372; border-radius: 25px; background-color: #ffd101; color: #1f3372 ">
+    <img src="~/imgProdotti/@ViewBag.Foto" style="width:180px; height:200px;" />
+    <div>
+        @ViewBag.Nome
+    </div>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.idUser, "idUser", htmlAttributes: new { @class = "control-label col-md-2 labelNew" })
+        <div class="my-2">
+            @Html.DropDownListFor(model => model.idUser, new SelectList(ViewBag.ListaNegozi, "Value", "Text"), "------Seleziona Negozio------", new { @class = "form-control text-center", @style = "width:60%;margin:0 auto" })
+            @Html.ValidationMessageFor(model => model.idUser, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2 labelNew" })
+        <div class="my-2">
+            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control text-center", @type = "date", @style = "width:60%;margin:0 auto" } })
+            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantita, htmlAttributes: new { @class = "control-label col-md-2 labelNew" })
+        <div class="my-2">
+            @Html.EditorFor(model => model.Quantita, new { htmlAttributes = new { @class = "form-control text-center", @style = "width:60%;margin:0 auto" } })
+            @Html.ValidationMessageFor(model => model.Quantita, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <div class="my-3">
+            <input type="submit" value="Ordina" class="btn  text-white p-1" style="text-decoration: none; background-color: #e00025; margin:0 auto; width:300px" />
+        </div>
+    </div>
+</div>
+}
+<p class="text-center" style="color:red">@ViewBag.Errore</p>
+<div>
+    @Html.ActionLink("Torna Indietro", "Index")
+</div>
